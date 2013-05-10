@@ -3,7 +3,6 @@
 source ./setup.sh
 source ./stop-all.sh
 
-export CDIR=..
 # define the location to install hadoop.
 export HBASE_DIR=$BASE_DIR/bin
 
@@ -15,14 +14,14 @@ mkdir -p $BASE_DIR/data/hadoop_tmp_dir
 chmod 755 $BASE_DIR/data/hadoop_tmp_dir
 
 echo "Untarring $HADOOP_VERSION to $HBASE_DIR"
-tar xfz $CDIR/$HADOOP_VERSION.tar.gz -C $HBASE_DIR
+tar xfz $HADOOP_VERSION.tar.gz -C $HBASE_DIR
 ln -s $HBASE_DIR/$HADOOP_VERSION $HBASE_DIR/hadoop
-cp $CDIR/core-site.xml $HBASE_DIR/hadoop/conf/core-site.xml
-cp $CDIR/hdfs-site.xml $HBASE_DIR/hadoop/conf/hdfs-site.xml
-cp $CDIR/mapred-site.xml $HBASE_DIR/hadoop/conf/mapred-site.xml
-cp $CDIR/hadoop-env.sh $HBASE_DIR/hadoop/conf/hadoop-env.sh
-cp $CDIR/generic_logger.xml $HBASE_DIR/hadoop/conf
-cp $CDIR/monitor_logger.xml $HBASE_DIR/hadoop/conf
+cp core-site.xml $HBASE_DIR/hadoop/conf/core-site.xml
+cp hdfs-site.xml $HBASE_DIR/hadoop/conf/hdfs-site.xml
+cp mapred-site.xml $HBASE_DIR/hadoop/conf/mapred-site.xml
+cp hadoop-env.sh $HBASE_DIR/hadoop/conf/hadoop-env.sh
+cp generic_logger.xml $HBASE_DIR/hadoop/conf
+cp monitor_logger.xml $HBASE_DIR/hadoop/conf
 # Update master and slaves with the hostname
 hostname -f > $HBASE_DIR/hadoop/conf/masters
 hostname -f > $HBASE_DIR/hadoop/conf/slaves
