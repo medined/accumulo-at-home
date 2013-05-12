@@ -3,9 +3,9 @@
 source ./setup.sh
 source ./stop-all.sh
 
-export MY_ACCUMULO_VERSION=1.4.2
+export MY_ACCUMULO_VERSION=1.4.3
 
-rm -rf $BASE_DIR/software/accumulo
+rm -rf $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION
 rm -rf $BASE_DIR/bin/accumulo-$MY_ACCUMULO_VERSION
 
 echo "Connecting to apache.org. Please be patient..."
@@ -13,14 +13,14 @@ echo "Connecting to apache.org. Please be patient..."
 # Accumulo is downloaded into a software directory and then installed
 # into a bin directory.
 
-svn co https://svn.apache.org/repos/asf/accumulo/tags/$MY_ACCUMULO_VERSION $BASE_DIR/software/accumulo
+svn co https://svn.apache.org/repos/asf/accumulo/tags/$MY_ACCUMULO_VERSION $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION
 echo "Cloned accumulo"
 
-pushd $BASE_DIR/software/accumulo; mvn -DskipTests package && mvn assembly:single -N; popd
+pushd $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION; mvn -DskipTests package && mvn assembly:single -N; popd
 echo "Compiled accumulo"
 
 # Make the lib/ext directory group writeable so that you can deply jar files there.
-tar xfz $BASE_DIR/software/accumulo/target/accumulo-$MY_ACCUMULO_VERSION-dist.tar.gz -C $BASE_DIR/bin
+tar xfz $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION/target/accumulo-$MY_ACCUMULO_VERSION-dist.tar.gz -C $BASE_DIR/bin
 
 # Compile the native libraries
 pushd $BASE_DIR/bin/accumulo-$MY_ACCUMULO_VERSION/src/server/src/main/c++; make; popd
@@ -48,8 +48,11 @@ hostname -f > $BASE_DIR/bin/accumulo/conf/tracers
 ./start-hadoop.sh
 ./start-zookeeper.sh
 
+echo "Pausing 60 seconds to give Hadoop time to come out of safe mode."
+sleep 60
+
 echo "initializing accumulo"
-$BASE_DIR/bin/hadoop/bin/hadoop fs -rmr /user/accumulo/accumulo 2>/dev/null
+$BASE_DIR/bin/hadoop/bin/hadoop fs -rmr /user/accumulo/accumulo
 $BASE_DIR/bin/accumulo/bin/accumulo init 
 
 ./stop-hadoop.sh

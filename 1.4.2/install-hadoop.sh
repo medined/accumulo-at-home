@@ -14,7 +14,7 @@ mkdir -p $BASE_DIR/data/hadoop_tmp_dir
 chmod 755 $BASE_DIR/data/hadoop_tmp_dir
 
 echo "Untarring $HADOOP_VERSION to $HBASE_DIR"
-tar xfz $HADOOP_VERSION.tar.gz -C $HBASE_DIR
+tar xfz ../$HADOOP_VERSION.tar.gz -C $HBASE_DIR
 ln -s $HBASE_DIR/$HADOOP_VERSION $HBASE_DIR/hadoop
 cp core-site.xml $HBASE_DIR/hadoop/conf/core-site.xml
 cp hdfs-site.xml $HBASE_DIR/hadoop/conf/hdfs-site.xml

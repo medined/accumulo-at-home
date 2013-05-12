@@ -12,7 +12,7 @@ mkdir -p $BASE_DIR/data/zookeeper_tmp_dir
 chmod 777 $BASE_DIR/data/zookeeper_tmp_dir
 
 echo "Untarring $ZOOKEEPER_VERSION to $ZBASE_DIR"
-tar xfz $ZOOKEEPER_VERSION.tar.gz -C $ZBASE_DIR
+tar xfz ../$ZOOKEEPER_VERSION.tar.gz -C $ZBASE_DIR
 ln -s $ZBASE_DIR/$ZOOKEEPER_VERSION $ZBASE_DIR/zookeeper
 cp zoo.cfg $ZBASE_DIR/zookeeper/conf/zoo.cfg
 # Note that I use a different delimiter instead of standard slash below because I am working with directory names.
