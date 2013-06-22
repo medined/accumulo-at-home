@@ -54,7 +54,7 @@ echo "Don't forget to update your PATH! Check setup.sh"
 echo "if you need hints."
 echo ""
 echo "You can run ./start-all.sh to start " 
-echp "Hadoop, Zookeeper, and Accumulo."
+echo "Hadoop, Zookeeper, and Accumulo."
 echo "------------------------"
 
 date +"%Y/%m/%d %H:%M:%S"
