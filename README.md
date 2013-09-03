@@ -1,3 +1,5 @@
+[![Clone in Koding](http://kbutton.org/clone.png)](http://kbutton.org/user/project)
+
 accumulo-at-home
 ================
 
