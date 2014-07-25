@@ -22,6 +22,7 @@ fi
 if [ "$JAVA_HOME" == "" ];
 then
   echo "UNABLE TO SET JAVA_HOME!"
+  exit 1
 fi
 
 
