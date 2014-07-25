@@ -30,7 +30,26 @@
 
 export ACCUMULO_HOME=$HOME/accumulo_home/bin/accumulo
 
-test -z "$JAVA_HOME"             && export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+if [ -d /usr/lib/jvm/java-6-openjdk ];
+then
+  # Ubuntu 10.04 (and perhaps others)
+  JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+fi
+if [ -d /usr/lib/jvm/java-6-openjdk-i386 ];
+then
+  JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+fi
+if [ -d /usr/lib/jvm/java-7-openjdk-amd64 ];
+then
+  JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+fi
+if [ "$JAVA_HOME" == "" ];
+then
+  echo "UNABLE TO SET JAVA_HOME!"
+  exit 1
+fi
+
+test -z "$JAVA_HOME"             && export JAVA_HOME="$JAVA_HOME"
 test -z "$HADOOP_HOME"           && export HADOOP_HOME=$HOME/accumulo_home/software/hadoop
 test -z "$HADOOP_PREFIX"         && export HADOOP_PREFIX=$HOME/accumulo_home/software/hadoop
 test -z "$ZOOKEEPER_HOME"        && export ZOOKEEPER_HOME=$HOME/accumulo_home/software/zookeeper
