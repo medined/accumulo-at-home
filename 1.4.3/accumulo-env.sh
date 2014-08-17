@@ -34,14 +34,17 @@ if [ -d /usr/lib/jvm/java-6-openjdk ];
 then
   # Ubuntu 10.04 (and perhaps others)
   JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+  echo "Set java home to java 6 openjdk"
 fi
 if [ -d /usr/lib/jvm/java-6-openjdk-i386 ];
 then
   JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+  echo "Set java home to java 6 openjdk-i386"
 fi
 if [ -d /usr/lib/jvm/java-7-openjdk-amd64 ];
 then
   JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+  echo "Set java home to java 7 openjdk"
 fi
 if [ "$JAVA_HOME" == "" ];
 then
