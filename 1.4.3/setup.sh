@@ -3,7 +3,6 @@
 export BASE_DIR=$HOME/accumulo_home
 
 export ACCUMULO_HOME=$BASE_DIR/bin/accumulo
-export HADOOP_HOME=$BASE_DIR/bin/hadoop
 export HADOOP_PREFIX=$BASE_DIR/bin/hadoop
 export ZOOKEEPER_HOME=$BASE_DIR/bin/zookeeper
 
