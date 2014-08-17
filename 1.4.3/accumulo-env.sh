@@ -53,7 +53,6 @@ then
 fi
 
 test -z "$JAVA_HOME"             && export JAVA_HOME="$JAVA_HOME"
-test -z "$HADOOP_HOME"           && export HADOOP_HOME=$HOME/accumulo_home/software/hadoop
 test -z "$HADOOP_PREFIX"         && export HADOOP_PREFIX=$HOME/accumulo_home/software/hadoop
 test -z "$ZOOKEEPER_HOME"        && export ZOOKEEPER_HOME=$HOME/accumulo_home/software/zookeeper
 test -z "$ACCUMULO_LOG_DIR"      && export ACCUMULO_LOG_DIR=$ACCUMULO_HOME/logs
